@@ -17,12 +17,18 @@ module.exports = {
     rules: [
       {
         test: /\.[tj]sx?$/,
+        exclude: /node_modules/,
         use: ['ts-loader'],
       },
       {
-        test: /\.(s*)css$/,
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.scss$/,
         use: [
           'style-loader',
+          'css-modules-typescript-loader',
           {
             loader: 'css-loader',
             options: {
