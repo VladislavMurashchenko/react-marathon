@@ -7,7 +7,7 @@ type Props = {
   variant?: 'primary' | 'secondary';
   type?: 'button' | 'reset' | 'submit';
   className?: string;
-  onClick: (e: MouseEvent) => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   width?: 'min' | 'max';
   size?: 'normal' | 'small';
 };
@@ -19,6 +19,7 @@ const Button: React.FC<Props> = ({
   className = null,
   width = 'min',
   size = 'normal',
+  onClick,
 }) => {
   return (
     <button
@@ -28,6 +29,7 @@ const Button: React.FC<Props> = ({
         [s.secondary]: variant === 'secondary',
         [s.small]: size === 'small',
       })}
+      onClick={onClick}
     >
       {children}
     </button>

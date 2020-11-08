@@ -1,0 +1,9 @@
+@import '../../variables';
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+}
