@@ -8,16 +8,8 @@ interface LayoutProps {
   as?: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({
-  children,
-  className = null,
-  as = 'div',
-}) => {
-  return React.createElement(
-    as,
-    { className: cn(s.root, className) },
-    children,
-  );
+const Layout: React.FC<LayoutProps> = ({ children, className = null }) => {
+  return <div className={cn(s.root, className)}>{children}</div>;
 };
 
 export default Layout;
