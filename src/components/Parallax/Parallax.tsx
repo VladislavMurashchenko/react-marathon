@@ -31,20 +31,20 @@ const Parallax = () => {
 
   return (
     <div className={s.root}>
-      <div style={moveWithMouse(0.2)} className={s.smallPokeBall}>
+      <div style={moveWithMouse(0.04)} className={s.smallPokeBall}>
         <img src={SmallPokeBallPng} alt="Small PokeBall" />
       </div>
-      <div style={moveWithMouse(0.05)} className={s.cloud}>
+      <div style={moveWithMouse(0.03)} className={s.cloud}>
         <img src={CloudPng} alt="Cloud PokeBall" />
       </div>
-      <div style={moveWithMouse(0.05)} className={s.cloudBig}>
+      <div style={moveWithMouse(0.03)} className={s.cloudBig}>
         <img src={CloudBigPng} alt="Cloud Big PokeBall" />
       </div>
 
-      <div style={moveWithMouse(0.2)} className={s.pokeBall}>
+      <div style={moveWithMouse(0.01)} className={s.pokeBall}>
         <img src={PokeBallPng} alt="Big PokeBall" />
       </div>
-      <div style={moveWithMouse(0.05)} className={s.pikachu}>
+      <div style={moveWithMouse(0.015)} className={s.pikachu}>
         <img src={PikachuPng} alt="Cloud PokeBall" />
       </div>
     </div>
