@@ -2,11 +2,11 @@ import React from 'react';
 
 import AppHeader from '../../components/AppHeader';
 
-const NotFound = () => (
+const NotFoundPage = () => (
   <>
     <AppHeader />
     <div>Not Found</div>
   </>
 );
 
-export default NotFound;
+export default NotFoundPage;
