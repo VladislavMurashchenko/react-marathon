@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { A } from 'hookrouter';
 
 import s from './MenuItem.module.scss';
 
@@ -8,17 +8,11 @@ type Props = {
   navigateTo?: string;
 };
 
-const MenuItem: React.FC<Props> = ({ text, navigateTo = null }) => {
-  return navigateTo ? (
-    <NavLink
-      to={navigateTo}
-      activeClassName={s.activeLink}
-      className={s.menuLink}
-    >
+const MenuItem: React.FC<Props> = ({ text, navigateTo = '#' }) => {
+  return (
+    <A href={navigateTo} className={s.menuLink}>
       {text}
-    </NavLink>
-  ) : (
-    <div className={s.menuLink}>{text}</div>
+    </A>
   );
 };
 

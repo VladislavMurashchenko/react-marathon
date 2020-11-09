@@ -11,7 +11,7 @@ const AppHeader: React.FC = () => {
       <div className={s.wrap}>
         <Logo className={s.pokemonLogo} />
         <nav className={s.menuWrap}>
-          <MenuItem text="Home" navigateTo="/home" />
+          <MenuItem text="Home" navigateTo="/" />
           <MenuItem text="Pokédex" navigateTo="/pokedex" />
           <MenuItem text="Legendaries" />
           <MenuItem text="Documentation" />
