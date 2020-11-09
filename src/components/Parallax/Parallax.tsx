@@ -21,7 +21,7 @@ const Parallax = () => {
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [screenX, screenY]);
+  }, []);
 
   const moveWithMouse = (ratio: number) => {
     return {
