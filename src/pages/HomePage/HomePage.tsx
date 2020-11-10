@@ -18,11 +18,11 @@ const HomePage: React.FC = () => {
       <main className={s.main}>
         <Layout className={s.layout}>
           <div className={s.textWrapper}>
-            <Heading as="h1">
+            <Heading as="h1" className={s.heading}>
               <span className={s.bold}>Find</span> all your favorite{' '}
               <span className={s.bold}>Pokemon</span>
             </Heading>
-            <Heading as="h2">
+            <Heading as="h2" className={s.heading}>
               You can know the type of Pokemon, its strengths, disadvantages and
               abilities
             </Heading>

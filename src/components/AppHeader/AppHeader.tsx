@@ -16,6 +16,7 @@ const AppHeader: React.FC = () => {
         <nav className={s.menuWrap}>
           {GENERAL_MENU.map((menuItem) => (
             <A
+              key={menuItem.title}
               href={menuItem.link}
               className={cn(s.menuLink, {
                 [s.activeLink]: path === menuItem.link,
