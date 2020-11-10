@@ -1,17 +1,35 @@
 import React from 'react';
-
-import AppHeader from './components/AppHeader';
-import AppFooter from './components/AppFooter';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
 import s from './App.module.scss';
 
+import AppHeader from './components/AppHeader';
+import AppFooter from './components/AppFooter';
+import HomePage from './pages/HomePage';
+import PokedexPage from './pages/PokedexPage';
+
 const App: React.FC = () => {
   return (
-    <div className={s.wrapper}>
-      <AppHeader />
-      <main className={s.main}>some content</main>
-      <AppFooter />
-    </div>
+    <Router>
+      <div className={s.wrapper}>
+        <AppHeader />
+        <Switch>
+          <Route path="/pokedex">
+            <PokedexPage />
+          </Route>
+          <Route path="/home">
+            <HomePage />
+          </Route>
+          <Redirect to="/home" />
+        </Switch>
+        <AppFooter />
+      </div>
+    </Router>
   );
 };
 

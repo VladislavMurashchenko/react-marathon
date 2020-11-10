@@ -1,0 +1,19 @@
+@import '../../variables';
+
+.main {
+  flex: 1;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+  overflow: hidden;
+}
+
+.layout {
+  display: flex;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.textWrapper {
+  max-width: 500px;
+}
