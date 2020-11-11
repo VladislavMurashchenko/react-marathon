@@ -7,3 +7,9 @@
   flex: 1;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
 }
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
