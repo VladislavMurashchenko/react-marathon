@@ -7,8 +7,8 @@ export type Pokemon = {
     hp: number;
     attack: number;
     defense: number;
-    'special-attack': number;
-    'special-defense': number;
+    specialAttack: number;
+    specialDefense: number;
     speed: number;
   };
   types: string[];
