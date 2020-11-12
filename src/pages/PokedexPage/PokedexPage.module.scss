@@ -2,8 +2,6 @@
 
 .main {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex: 1;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
 }
@@ -11,5 +9,12 @@
 .layout {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: space-between;
+}
+
+.heading {
+  text-align: center;
+  margin: 30px;
+  width: 100%;
 }
