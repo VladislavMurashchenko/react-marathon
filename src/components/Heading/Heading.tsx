@@ -12,7 +12,7 @@ const Heading: React.FC<Props> = ({ as, children, className }) => {
   return React.createElement(
     as,
     {
-      className: cn(s.heading, className, s[as]),
+      className: cn(s.heading, s[as], className),
     },
     children,
   );

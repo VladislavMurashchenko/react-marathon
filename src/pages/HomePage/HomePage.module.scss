@@ -19,5 +19,5 @@
 }
 
 .heading {
-  margin: 30px 0;
+  margin: 30px 0 !important; // for some reason styles in Heading component has bigger priority :(
 }
