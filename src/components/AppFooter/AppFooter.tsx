@@ -16,4 +16,4 @@ const AppFooter = () => {
   );
 };
 
-export default AppFooter;
+export default React.memo(AppFooter);

@@ -6,29 +6,36 @@ import EmptyPage from './pages/EmptyPage';
 
 type MenuItem = {
   title: string;
-  link: string;
+  link: LinkEnum;
   component: () => React.ReactNode;
 };
+
+export enum LinkEnum {
+  HOME = '/',
+  POKEDEX = '/pokedex',
+  LEGENDARIES = '/legendaries',
+  DOCUMENTATION = '/documentation',
+}
 
 export const GENERAL_MENU: MenuItem[] = [
   {
     title: 'Home',
-    link: '/',
+    link: LinkEnum.HOME,
     component: () => <HomePage />,
   },
   {
     title: 'Pokedex',
-    link: '/pokedex',
+    link: LinkEnum.POKEDEX,
     component: () => <PokedexPage />,
   },
   {
     title: 'Legendaries',
-    link: '/legendaries',
+    link: LinkEnum.LEGENDARIES,
     component: () => <EmptyPage title="Legendaries" />,
   },
   {
     title: 'Documentation',
-    link: '/documentation',
+    link: LinkEnum.DOCUMENTATION,
     component: () => <EmptyPage title="Documentation" />,
   },
 ];
