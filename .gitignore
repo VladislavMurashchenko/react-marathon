@@ -1,3 +1,4 @@
 node_modules
 dist
 src/**/*scss.d.ts
+.DS_Store
