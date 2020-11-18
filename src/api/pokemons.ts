@@ -1,5 +1,6 @@
 import { objectKeysToCamelCase } from '../utils';
-import Endpoint from './Endpoint';
+
+import config from '../config';
 
 export type Pokemon = {
   nameClean: string;
@@ -31,7 +32,6 @@ type PaginatedPokemons = {
   total: number;
 };
 
-// eslint-disable-next-line import/prefer-default-export
 type FetchParams = {
   limit: number;
   offset: number;
@@ -41,7 +41,12 @@ export const fetchPokemons = ({
   limit,
   offset,
 }: FetchParams): Promise<PaginatedPokemons> => {
-  return fetch(`${Endpoint.pokemons}?limit=${limit}offset=${offset}`)
+  const { protocol, host } = config.client.server;
+  const { pathname } = config.client.endpoint.getPokemons.uri;
+
+  const url = `${protocol}://${host}${pathname}`;
+
+  return fetch(`${url}?limit=${limit}offset=${offset}`)
     .then((res) => res.json())
     .then(objectKeysToCamelCase);
 };
