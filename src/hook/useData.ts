@@ -8,12 +8,16 @@ export enum DataStatus {
   READY = 'ready',
 }
 
-const useData = <T>(endpoint: EndpointConfig) => {
+const useData = <T>(
+  endpoint: EndpointConfig,
+  query: Record<string, any> = {},
+  deps: any[] = [],
+) => {
   const [status, setStatus] = useState(DataStatus.LOADING);
   const [data, setData] = useState<T | null>(null);
 
   useEffect(() => {
-    req(endpoint)
+    req(endpoint, query)
       .then((data: T) => {
         setData(data);
         setStatus(DataStatus.READY);
@@ -21,7 +25,7 @@ const useData = <T>(endpoint: EndpointConfig) => {
       .catch(() => {
         setStatus(DataStatus.ERROR);
       });
-  }, []);
+  }, deps);
 
   return {
     data,
