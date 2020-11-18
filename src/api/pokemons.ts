@@ -24,7 +24,7 @@ export type Pokemon = {
   weight: number;
 };
 
-type PaginatedPokemons = {
+export type PaginatedPokemons = {
   count: number;
   limit: string;
   offset: number;

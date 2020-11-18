@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pokemon } from '../../pages/PokedexPage/pokemons';
+import { Pokemon } from '../../api/pokemons';
 import Heading from '../Heading';
 
 import s from './PokemonCard.module.scss';

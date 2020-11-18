@@ -1,52 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import s from './PokedexPage.module.scss';
 
 import PokemonCard from '../../components/PokemonCard';
 import Layout from '../../components/Layout';
-import { fetchPokemons, Pokemon } from '../../api/pokemons';
+import { PaginatedPokemons, Pokemon } from '../../api/pokemons';
 import Heading from '../../components/Heading';
-
-enum Status {
-  INITIAL = 'initial',
-  LOADING = 'loading',
-  ERROR = 'error',
-  READY = 'ready',
-}
+import useData, { DataStatus } from '../../hook/useData';
 
 const PokedexPage = () => {
-  const [totalPokemons, setTotalPokemons] = useState(0);
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-  const [status, setStatus] = useState(Status.INITIAL);
+  const { data: pokemonsData, status } = useData<PaginatedPokemons>(
+    'getPokemons',
+  );
 
-  useEffect(() => {
-    setStatus(Status.LOADING);
-
-    fetchPokemons({ limit: 100, offset: 0 })
-      .then((data) => {
-        setPokemons(data.pokemons);
-        setTotalPokemons(data.total);
-        setStatus(Status.READY);
-      })
-      .catch(() => {
-        setStatus(Status.ERROR);
-      });
-  }, []);
-
-  if (status === Status.ERROR) {
+  if (status === DataStatus.ERROR) {
     return withLayout(<div>Something went wrong</div>);
   }
 
-  if (status === Status.INITIAL || status === Status.LOADING) {
+  if (status === DataStatus.LOADING) {
     return withLayout(<div>Loading...</div>);
   }
 
   return withLayout(
     <>
       <Heading as="h2" className={s.heading}>
-        {totalPokemons} <b>Pokemons</b> for you to choose your favorite
+        {pokemonsData?.total} <b>Pokemons</b> for you to choose your favorite
       </Heading>
-      {pokemons.map((pokemon) => (
+      {pokemonsData?.pokemons.map((pokemon: Pokemon) => (
         <PokemonCard key={pokemon.id} pokemon={pokemon} />
       ))}
     </>,
