@@ -1,52 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import s from './PokedexPage.module.scss';
 
 import PokemonCard from '../../components/PokemonCard';
 import Layout from '../../components/Layout';
-import { fetchPokemons, Pokemon } from '../../api/pokemons';
+import { PaginatedPokemons, Pokemon } from '../../api/pokemons';
 import Heading from '../../components/Heading';
+import useData, { DataStatus } from '../../hook/useData';
 
-enum Status {
-  INITIAL = 'initial',
-  LOADING = 'loading',
-  ERROR = 'error',
-  READY = 'ready',
-}
+const nullPokemonsData: PaginatedPokemons = {
+  count: 0,
+  total: 0,
+  limit: '',
+  offset: 0,
+  pokemons: [],
+};
 
 const PokedexPage = () => {
-  const [totalPokemons, setTotalPokemons] = useState(0);
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-  const [status, setStatus] = useState(Status.INITIAL);
+  const [searchName, setSearchName] = useState('');
+  const { data: pokemonsData, status } = useData<PaginatedPokemons>({
+    endpoint: 'getPokemons',
+    initialData: nullPokemonsData,
+    query: {
+      name: searchName,
+    },
+    deps: [searchName],
+  });
 
-  useEffect(() => {
-    setStatus(Status.LOADING);
-
-    fetchPokemons({ limit: 100, offset: 0 })
-      .then((data) => {
-        setPokemons(data.pokemons);
-        setTotalPokemons(data.total);
-        setStatus(Status.READY);
-      })
-      .catch(() => {
-        setStatus(Status.ERROR);
-      });
-  }, []);
-
-  if (status === Status.ERROR) {
+  if (status === DataStatus.ERROR) {
     return withLayout(<div>Something went wrong</div>);
   }
 
-  if (status === Status.INITIAL || status === Status.LOADING) {
+  if (status === DataStatus.LOADING) {
     return withLayout(<div>Loading...</div>);
   }
 
   return withLayout(
     <>
       <Heading as="h2" className={s.heading}>
-        {totalPokemons} <b>Pokemons</b> for you to choose your favorite
+        {pokemonsData.total} <b>Pokemons</b> for you to choose your favorite
       </Heading>
-      {pokemons.map((pokemon) => (
+      <div>
+        <input
+          type="text"
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)}
+        />
+      </div>
+      {pokemonsData.pokemons.map((pokemon: Pokemon) => (
         <PokemonCard key={pokemon.id} pokemon={pokemon} />
       ))}
     </>,
