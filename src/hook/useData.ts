@@ -8,13 +8,21 @@ export enum DataStatus {
   READY = 'ready',
 }
 
-const useData = <T>(
-  endpoint: EndpointConfig,
-  query: Record<string, any> = {},
-  deps: any[] = [],
-) => {
+type Props<T> = {
+  endpoint: EndpointConfig;
+  initialData: T;
+  query?: Record<string, any>;
+  deps?: any[];
+};
+
+const useData = <T>({
+  endpoint,
+  initialData,
+  query = {},
+  deps = [],
+}: Props<T>) => {
   const [status, setStatus] = useState(DataStatus.LOADING);
-  const [data, setData] = useState<T | null>(null);
+  const [data, setData] = useState<T>(initialData);
 
   useEffect(() => {
     req(endpoint, query)

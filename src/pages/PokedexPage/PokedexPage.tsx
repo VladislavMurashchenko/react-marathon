@@ -8,15 +8,24 @@ import { PaginatedPokemons, Pokemon } from '../../api/pokemons';
 import Heading from '../../components/Heading';
 import useData, { DataStatus } from '../../hook/useData';
 
+const nullPokemonsData: PaginatedPokemons = {
+  count: 0,
+  total: 0,
+  limit: '',
+  offset: 0,
+  pokemons: [],
+};
+
 const PokedexPage = () => {
   const [searchName, setSearchName] = useState('');
-  const { data: pokemonsData, status } = useData<PaginatedPokemons>(
-    'getPokemons',
-    {
+  const { data: pokemonsData, status } = useData<PaginatedPokemons>({
+    endpoint: 'getPokemons',
+    initialData: nullPokemonsData,
+    query: {
       name: searchName,
     },
-    [searchName],
-  );
+    deps: [searchName],
+  });
 
   if (status === DataStatus.ERROR) {
     return withLayout(<div>Something went wrong</div>);
@@ -29,7 +38,7 @@ const PokedexPage = () => {
   return withLayout(
     <>
       <Heading as="h2" className={s.heading}>
-        {pokemonsData?.total} <b>Pokemons</b> for you to choose your favorite
+        {pokemonsData.total} <b>Pokemons</b> for you to choose your favorite
       </Heading>
       <div>
         <input
@@ -38,7 +47,7 @@ const PokedexPage = () => {
           onChange={(e) => setSearchName(e.target.value)}
         />
       </div>
-      {pokemonsData?.pokemons.map((pokemon: Pokemon) => (
+      {pokemonsData.pokemons.map((pokemon: Pokemon) => (
         <PokemonCard key={pokemon.id} pokemon={pokemon} />
       ))}
     </>,
