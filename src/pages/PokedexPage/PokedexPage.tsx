@@ -4,7 +4,7 @@ import s from './PokedexPage.module.scss';
 
 import PokemonCard from '../../components/PokemonCard';
 import Layout from '../../components/Layout';
-import { PaginatedPokemons, Pokemon } from '../../api/pokemons';
+import { PaginatedPokemons, PokemonType } from '../../api/pokemons';
 import Heading from '../../components/Heading';
 import useData, { DataStatus } from '../../hook/useData';
 
@@ -47,7 +47,7 @@ const PokedexPage = () => {
           onChange={(e) => setSearchName(e.target.value)}
         />
       </div>
-      {pokemonsData.pokemons.map((pokemon: Pokemon) => (
+      {pokemonsData.pokemons.map((pokemon: PokemonType) => (
         <PokemonCard key={pokemon.id} pokemon={pokemon} />
       ))}
     </>,

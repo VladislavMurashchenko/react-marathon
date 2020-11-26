@@ -1,11 +1,11 @@
 import React from 'react';
-import { Pokemon } from '../../api/pokemons';
+import { PokemonType } from '../../api/pokemons';
 import Heading from '../Heading';
 
 import s from './PokemonCard.module.scss';
 
 type Props = {
-  pokemon: Pokemon;
+  pokemon: PokemonType;
 };
 
 const PokemonCard: React.FC<Props> = ({ pokemon }) => {

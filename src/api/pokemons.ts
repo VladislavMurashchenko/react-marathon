@@ -2,7 +2,7 @@ import { objectKeysToCamelCase } from '../utils';
 
 import config from '../config';
 
-export type Pokemon = {
+export type PokemonType = {
   nameClean: string;
   abilities: string[];
   stats: {
@@ -28,7 +28,7 @@ export type PaginatedPokemons = {
   count: number;
   limit: string;
   offset: number;
-  pokemons: Pokemon[];
+  pokemons: PokemonType[];
   total: number;
 };
 
