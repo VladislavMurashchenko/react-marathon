@@ -23,7 +23,7 @@ const App: React.FC = () => {
   return (
     <div className={s.wrapper}>
       <AppHeader />
-      {currentRoute}
+      <div className={s.maxHeight}>{currentRoute}</div>
       <AppFooter />
     </div>
   );
